@@ -365,6 +365,13 @@ pub struct NativeOptions {
     /// Defaults to true.
     pub dithering: bool,
 
+    /// Android application for `winit`'s event loop.
+    ///
+    /// This value is required on Android so that `winit` can be created correctly. See
+    /// [`EventLoopBuilder::build`] and [`with_android_app`] for details.
+    ///
+    /// [`EventLoopBuilder::build`]: winit::event_loop::EventLoopBuilder::build
+    /// [`with_android_app`]: winit::platform::android::EventLoopBuilderExtAndroid::with_android_app
     #[cfg(target_os = "android")]
     pub android_app: Option<winit::platform::android::activity::AndroidApp>,
 }
