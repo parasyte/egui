@@ -364,6 +364,9 @@ pub struct NativeOptions {
     ///
     /// Defaults to true.
     pub dithering: bool,
+
+    #[cfg(target_os = "android")]
+    pub android_app: Option<winit::platform::android::activity::AndroidApp>,
 }
 
 #[cfg(not(target_arch = "wasm32"))]
@@ -382,6 +385,9 @@ impl Clone for NativeOptions {
             wgpu_options: self.wgpu_options.clone(),
 
             persistence_path: self.persistence_path.clone(),
+
+            #[cfg(target_os = "android")]
+            android_app: self.android_app.clone(),
 
             ..*self
         }
@@ -424,6 +430,9 @@ impl Default for NativeOptions {
             persistence_path: None,
 
             dithering: true,
+
+            #[cfg(target_os = "android")]
+            android_app: None,
         }
     }
 }
